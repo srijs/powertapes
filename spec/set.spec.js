@@ -15,8 +15,12 @@
         expect(Set.cardinality instanceof Function).toBeTruthy();
       });
 
-      it('holds {} => 0', function () {
+      it('holds f({}) = 0', function () {
         expect(Set.cardinality({})).toEqual(0);
+      });
+
+      it('holds f({a}) = 1', function () {
+        expect(Set.cardinality({a:true})).toEqual(1);
       });
 
     });
