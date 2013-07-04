@@ -1,7 +1,7 @@
 'use strict'
 
-p = '\\':    3, '&':     2, '|':     1
-l = '\\': true, '&':  true, '|':  true
+const p = \\\ :3    \& :2    \| :1
+const l = \\\ :true \& :true \| :true
 
 handle = !(tok, output, stack) ->
 
@@ -15,7 +15,7 @@ handle = !(tok, output, stack) ->
   | tok is \) =>
     while (top = stack.pop!) and top isnt \(
       output.push top
-    unless top is \( then throw new Error 'Mismatched Parens'
+    if top isnt \( then throw new Error 'Mismatched Parens'
 
   | otherwise => output.push tok
 
@@ -24,11 +24,11 @@ handle = !(tok, output, stack) ->
   while str = str.trim-left!
     if m = str.match /^([\|\&\\])|([\.\+\#\:]?[a-zA-Z0-9_\-]+)|([\(\)])/
       handle m[0], output, stack
-      str = str.substr m[0].length
+      str .= substr m[0].length
     else throw new Error 'Malformed Input'
 
   while top = stack.pop!
-    if top in [\( \)] then throw new Error 'Mismatched Parens'
+    if top in <[( )]> then throw new Error 'Mismatched Parens'
     output.push top
 
   output
