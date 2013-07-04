@@ -1,6 +1,6 @@
 'use strict'
 
-describe 'parse', ->
+describe 'parse', (_)->
 
   it 'is a function', ->
     expect(parse instanceof Function).toBe true

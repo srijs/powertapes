@@ -11,7 +11,7 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   'lib/*.js',
-  'spec/*.spec.js'
+  'spec/*.js'
 ];
 
 preprocessors = {

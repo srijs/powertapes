@@ -2,12 +2,12 @@
 
 Set = @Set
 
-describe 'Set', ->
+describe 'Set', (_)->
 
   it 'is an object', ->
     expect(Set instanceof Object).toEqual true
 
-  describe 'cardinality', ->
+  describe 'cardinality', (_)->
 
     it 'is a function', ->
       expect(Set.cardinality instanceof Function).toEqual true
@@ -18,7 +18,7 @@ describe 'Set', ->
     it 'holds f({a}) = 1', ->
       expect(Set.cardinality {a:true}).toEqual 1
 
-  describe 'empty', ->
+  describe 'empty', (_)->
 
     it 'is a function', ->
       expect(Set.empty instanceof Function).toEqual true
@@ -29,7 +29,7 @@ describe 'Set', ->
     it 'holds f({a}) = false', ->
       expect(Set.empty {a:true}).toEqual false
 
-  describe 'intersection', ->
+  describe 'intersection', (_)->
 
     it 'is a function', ->
       expect(Set.intersection instanceof Function).toEqual true
@@ -48,7 +48,7 @@ describe 'Set', ->
     it 'favors the first set', ->
       expect((Set.intersection {a:true}, {a:false}).a).toEqual true
 
-  describe 'union', ->
+  describe 'union', (_)->
 
     it 'is a function', ->
       expect(Set.union instanceof Function).toEqual true
@@ -70,7 +70,7 @@ describe 'Set', ->
     it 'favors the first set', ->
       expect((Set.union {a:true}, {a:false}).a).toEqual true
 
-  describe 'difference', ->
+  describe 'difference', (_)->
 
     it 'is a function', ->
       expect(Set.difference instanceof Function).toEqual true
