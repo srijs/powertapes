@@ -1,23 +1,21 @@
 'use strict'
 
-prec = '\\':    3, '&':     2, '|':     1
-lasc = '\\': true, '&':  true, '|':  true
+p = '\\':    3, '&':     2, '|':     1
+l = '\\': true, '&':  true, '|':  true
 
 handle = !(tok, output, stack) ->
 
-  | prec[tok]? =>
-    while top = stack[stack.length - 1]
-      break unless lasc[tok] and prec[tok] == prec[top] or prec[tok] < prec[top]
-      output.push stack.pop!
-    stack.push tok
+  | p[tok]? =>
+    while (top = stack.pop!) and l[tok] and p[tok] == p[top] or p[tok] < p[top]
+      output.push top
+    stack.push top, tok
 
   | tok is \( => stack.push tok
 
   | tok is \) =>
-    while not fin and top = stack.pop!
-      if top is \( then fin = on
-      else output.push top
-    unless fin then throw new Error 'Mismatched Parens'
+    while (top = stack.pop!) and top isnt \(
+      output.push top
+    unless top is \( then throw new Error 'Mismatched Parens'
 
   | otherwise => output.push tok
 
