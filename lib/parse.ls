@@ -1,7 +1,7 @@
 'use strict'
 
-const p = \\\ :3    \& :2    \| :1
-const l = \\\ :true \& :true \| :true
+const p = \\\ :3   \& :2   \| :1
+const l = \\\ :yes \& :yes \| :yes
 
 handle = !(tok, output, stack) ->
 
@@ -22,9 +22,9 @@ handle = !(tok, output, stack) ->
 @parse = (str, output = [], stack = []) ->
 
   while str = str.trim-left!
-    if m = str.match /^([\|\&\\])|([\.\+\#\:]?[a-zA-Z0-9_\-]+)|([\(\)])/
-      handle m[0], output, stack
-      str .= substr m[0].length
+    if m = str.match /^([\|\&\\])|([\.\+\#\:]?[a-zA-Z0-9_\-\/]+)|([\(\)])/
+      handle m.0, output, stack
+      str .= substr m.0.length
     else throw new Error 'Malformed Input'
 
   while top = stack.pop!
