@@ -21,3 +21,7 @@ handle = (wrap, stack) -> !(r) -> switch r
   | 0 => null
   | 1 => stack.0
   | _ => throw new Error 'Incomplete Expression'
+
+@run = (filter, data) -> switch filter
+  | null => data
+  | _    => {[k, v] for k, v of data when filter v}
